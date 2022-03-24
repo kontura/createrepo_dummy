@@ -13,20 +13,11 @@ WORDS = None
 if os.path.exists(word_file):
     WORDS = open(word_file).read().splitlines()
 else:
-    print("Didn't find: " + word_file + ", using random characters (slower)")
+    print("Didn't find: " + word_file)
+    sys.exit(1)
 
-def random_str(size=10):
-    random_string = ''
-
-    if (WORDS):
-        return random.choice(WORDS)
-
-    for _ in range(size):
-        random_integer = random.randint(97, 97 + 26 - 1)
-        # Keep appending random characters using chr(x)
-        random_string += (chr(random_integer))
-
-    return random_string
+def random_str():
+    return random.choice(WORDS)
 
 def get_random_changelog():
     author = random_str() + " <" + random_str() + "@redhat.com>"
